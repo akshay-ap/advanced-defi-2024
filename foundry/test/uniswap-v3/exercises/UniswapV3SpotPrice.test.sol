@@ -28,6 +28,8 @@ contract UniswapV3SwapTest is Test {
         // sqrtPriceX96 * sqrtPriceX96 might overflow
         // So use FullMath.mulDiv to do uint256 * uint256 / uint256 without overflow
 
+        price = FullMath.mulDiv(slot0.sqrtPriceX96, slot0.sqrtPriceX96, Q96);
+        price = 1e12 * 1e18 * Q96 / price;
         assertGt(price, 0, "price = 0");
         console2.log("price %e", price);
     }
